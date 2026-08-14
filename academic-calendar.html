@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Academic Calendar | Horizon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #002147;
+      --secondary: #0055A4;
+      --accent: #FFD700;
+      --light: #f9f9f9;
+      --dark: #1a1a1a;
+    }
+    body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
+    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 2rem; }
+    .calendar-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+    .timeline { position: relative; margin: 0; padding: 0; }
+    .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: var(--secondary); transform: translateX(-50%); }
+    .event-card { position: relative; width: 45%; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; margin: 20px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .event-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .event-card.left { float: left; clear: both; }
+    .event-card.right { float: right; clear: both; }
+    .event-date { font-weight: bold; color: var(--secondary); margin-bottom: 10px; }
+    .event-title { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .event-details { font-size: 0.9rem; color: #555; display: none; }
+    .event-card.active .event-details { display: block; }
+    .timeline::after { content: ''; display: table; clear: both; }
+    footer { background: var(--primary); color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
+    @media (max-width: 768px) {
+      .event-card { width: 90%; float: none; margin-left: auto; margin-right: auto; }
+      .timeline::before { left: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Horizon Education Institute Academic Calendar 2026/2027</h1>
+  </header>
+  <div class="calendar-container">
+    <div class="timeline">
+      <div class="event-card left">
+        <div class="event-date">Aug 1 – Aug 7, 2026</div>
+        <div class="event-title">Fresher’s Orientation Week</div>
+        <div class="event-details">Campus tours, student registration, orientation lectures, and cultural gala.</div>
+      </div>
+      <div class="event-card right">
+        <div class="event-date">Aug 8 – Dec 5, 2026</div>
+        <div class="event-title">Semester One</div>
+        <div class="event-details">Teaching period with lectures, tutorials, and continuous assessments.</div>
+      </div>
+      <div class="event-card left">
+        <div class="event-date">Nov 16 – Dec 5, 2026</div>
+        <div class="event-title">Semester One Examinations</div>
+        <div class="event-details">Final exams across faculties; results released in January.</div>
+      </div>
+      <div class="event-card right">
+        <div class="event-date">Jan 11 – Jan 15, 2027</div>
+        <div class="event-title">77th Graduation Week</div>
+        <div class="event-details">Ceremonies for graduates from all colleges; live-streamed online.</div>
+      </div>
+      <div class="event-card left">
+        <div class="event-date">Jan 16 – May 15, 2027</div>
+        <div class="event-title">Semester Two</div>
+        <div class="event-details">Teaching resumes; includes mid-semester break in March.</div>
+      </div>
+      <div class="event-card right">
+        <div class="event-date">Apr 26 – May 15, 2027</div>
+        <div class="event-title">Semester Two Examinations</div>
+        <div class="event-details">End-of-semester exams; graduation candidates finalized.</div>
+      </div>
+      <div class="event-card left">
+        <div class="event-date">May 15 – Jul 24, 2027</div>
+        <div class="event-title">Recess Term</div>
+        <div class="event-details">Industrial training, internships, and research projects.</div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+        <div class="socials">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Twitter</a>
+          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="#" class="social-btn">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+          <li><a href="campus-life.html" class="footer-link">Campus Life</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Programs</h3>
+        <ul class="footer-list">
+          <li><a href="#" class="footer-link">Undergraduate</a></li>
+          <li><a href="#" class="footer-link">Graduate</a></li>
+          <li><a href="#" class="footer-link">Professional Courses</a></li>
+          <li><a href="#" class="footer-link">Online Learning</a></li>
+          <li><a href="#" class="footer-link">Research Programs</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Horizon Education Institute. All rights reserved. | <a href="#privacy" class="footer-link">Privacy Policy</a> | <a href="#terms" class="footer-link">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".event-card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>

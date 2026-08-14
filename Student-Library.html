@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Library | Horizon Education Institute</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #002147;
+      --secondary: #0055A4;
+      --accent: #FFD700;
+      --light: #f9f9f9;
+      --dark: #1a1a1a;
+    }
+    body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
+    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 2rem; }
+    .library-container { max-width: 1200px; margin: 30px auto; padding: 20px; }
+    .search-box { width: 100%; padding: 14px; border: 1px solid var(--secondary); border-radius: 6px; margin-bottom: 30px; font-size: 1rem; }
+    .course-category { margin-bottom: 40px; }
+    .course-category h2 { color: var(--secondary); margin-bottom: 20px; font-size: 1.4rem; border-left: 5px solid var(--accent); padding-left: 10px; }
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .course-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .course-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .course-title { font-weight: bold; color: var(--primary); margin-bottom: 10px; font-size: 1.2rem }
+    .course-details { font-size: 0.9rem; color: #555; margin-bottom: 15px; }
+    .download-btn { display: inline-block; padding: 10px 14px; background: var(--secondary); color: #fff; border-radius: 4px; text-decoration: none; font-size: 1rem; transition: background 0.3s ease; }
+    .download-btn:hover { background: var(--primary); }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .course-category h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Horizon Education Institute – Student Library</h1>
+  </header>
+  <div class="library-container">
+    <input type="text" id="search" class="search-box" placeholder="Search courses...">
+
+    <div class="course-category">
+      <h2>Certificate Courses</h2>
+      <div class="course-grid" id="certificate-list"></div>
+    </div>
+
+    <div class="course-category">
+      <h2>Diploma Courses</h2>
+      <div class="course-grid" id="diploma-list"></div>
+    </div>
+
+    <div class="course-category">
+      <h2>Short Courses</h2>
+      <div class="course-grid" id="short-list"></div>
+    </div>
+  </div>
+
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+        <div class="socials">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Twitter</a>
+          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="#" class="social-btn">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+          <li><a href="campus-life.html" class="footer-link">Campus Life</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Programs</h3>
+        <ul class="footer-list">
+          <li><a href="#" class="footer-link">Undergraduate</a></li>
+          <li><a href="#" class="footer-link">Graduate</a></li>
+          <li><a href="#" class="footer-link">Professional Courses</a></li>
+          <li><a href="#" class="footer-link">Online Learning</a></li>
+          <li><a href="#" class="footer-link">Research Programs</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Horizon Education Institute. All rights reserved. | <a href="#privacy" class="footer-link">Privacy Policy</a> | <a href="#terms" class="footer-link">Terms of Service</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Example: Replace "books/sample.pdf" with actual file paths
+    const certificateCourses = [
+      { title: "National Certificate in ICT", details: "Covers computer basics, networking, and IT support.", file: "books/ict.pdf" },
+      { title: "National Certificate in Computer Repair & Maintenance", details: "Hands-on training in hardware troubleshooting.", file: "books/computer-repair.pdf" },
+      { title: "National Certificate in Journalism & Media Studies", details: "Introduction to reporting, editing, and media ethics.", file: "books/journalism.pdf" },
+      { title: "Certificate in Food Processing & Preparation", details: "Food safety, preservation, and preparation techniques.", file: "books/food-processing.pdf" },
+      { title: "Certificate in Catering & Hotel Management", details: "Hospitality management and catering services.", file: "books/catering.pdf" }
+    ];
+
+    const diplomaCourses = [
+      { title: "Diploma in Computer Science", details: "Advanced computing, programming, and systems design.", file: "books/computer-science.pdf" },
+      { title: "Diploma in Business Management", details: "Business administration, leadership, and entrepreneurship.", file: "books/business.pdf" },
+      { title: "Diploma in Accounting", details: "Financial accounting, auditing, and taxation.", file: "books/accounting.pdf" },
+      { title: "Journalism & Mass Media", details: "Advanced reporting, broadcasting, and media production.", file: "books/mass-media.pdf" },
+      { title: "Fashion & Garment Design", details: "Creative design, tailoring, and garment production.", file: "books/fashion.pdf" }
+    ];
+
+    const shortCourses = [
+      { title: "Computer Applications", details: "Microsoft Office, internet, and productivity tools.", file: "books/computer-apps.pdf" },
+      { title: "Tailoring and Garment Making", details: "Basic tailoring and garment construction.", file: "books/tailoring.pdf" },
+      { title: "Hairdressing and Beauty Therapy", details: "Salon management and beauty skills.", file: "books/hairdressing.pdf" },
+      { title: "Food and Nutrition", details: "Dietary planning and nutrition basics.", file: "books/nutrition.pdf" },
+      { title: "Video & Photography", details: "Camera handling, editing, and production.", file: "books/video.pdf" }
+    ];
+
+    function renderCourses(courses, containerId, filter = "") {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      courses
+        .filter(course => course.title.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(course => {
+          const card = document.createElement("div");
+          card.className = "course-card";
+          card.innerHTML = `<div class="course-title">${course.title}</div>
+                            <div class="course-details">${course.details}</div>
+                            <a href="${course.file}" class="download-btn" download>Download Book</a>`;
+          container.appendChild(card);
+        });
+    }
+
+    function renderAll(filter = "") {
+      renderCourses(certificateCourses, "certificate-list", filter);
+      renderCourses(diplomaCourses, "diploma-list", filter);
+      renderCourses(shortCourses, "short-list", filter);
+    }
+
+    document.getElementById("search").addEventListener("input", e => renderAll(e.target.value));
+    renderAll();
+  </script>
+</body>
+</html>

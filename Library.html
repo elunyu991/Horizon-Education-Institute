@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Library - Horizon Education Institute</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #002147;
+      --secondary: #0055A4;
+      --accent: #FFD700;
+      --light: #f9f9f9;
+      --dark: #1a1a1a;
+    }
+    body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
+    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 2rem; }
+    p.page-subtitle { margin: 5px 0 0; font-size: 1rem; }
+    .container { max-width: 800px; margin: 40px auto; padding: 20px; text-align: center; }
+    .search-box { width: 100%; padding: 14px; border: 1px solid var(--secondary); border-radius: 6px; margin-bottom: 20px; font-size: 1rem; }
+    .btn-primary { padding: 10px 16px; background: var(--secondary); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+    .btn-primary:hover { background: var(--primary); }
+    .course-card { display: none; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; margin-top: 20px; text-align: left; }
+    .course-title { font-weight: bold; color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
+    .course-details { font-size: 0.95rem; color: #555; margin-bottom: 15px; }
+    .download-btn { display: inline-block; padding: 10px 14px; background: var(--secondary); color: #fff; border-radius: 4px; text-decoration: none; font-size: 0.85rem; transition: background 0.3s ease; }
+    .download-btn:hover { background: var(--primary); }
+    footer { background: var(--primary); color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      .course-title { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Digital Library</h1>
+    <p class="page-subtitle">Search and access e-books, journals, and articles</p>
+  </header>
+
+  <div class="container">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search courses or books...">
+    <button onclick="searchLibrary()" class="btn-primary">Search</button>
+    <div id="resultCard"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+        <div class="socials">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Twitter</a>
+          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="#" class="social-btn">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+          <li><a href="campus-life.html" class="footer-link">Campus Life</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Programs</h3>
+        <ul class="footer-list">
+          <li><a href="#" class="footer-link">Undergraduate</a></li>
+          <li><a href="#" class="footer-link">Graduate</a></li>
+          <li><a href="#" class="footer-link">Professional Courses</a></li>
+          <li><a href="#" class="footer-link">Online Learning</a></li>
+          <li><a href="#" class="footer-link">Research Programs</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Horizon Education Institute. All rights reserved. | <a href="#privacy" class="footer-link">Privacy Policy</a> | <a href="#terms" class="footer-link">Terms of Service</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Example library data (replace file paths with your actual PDFs/DOCs)
+    const library = [
+      { title: "National Certificate in ICT", file: "books/ict.pdf", details: "Covers computer basics, networking, and IT support." },
+      { title: "Diploma in Computer Science", file: "books/computer-science.pdf", details: "Advanced computing, programming, and systems design." },
+      { title: "Computer Applications", file: "books/computer-apps.pdf", details: "Microsoft Office, internet, and productivity tools." },
+      { title: "Tailoring and Garment Making", file: "books/tailoring.pdf", details: "Basic tailoring and garment construction." },
+      { title: "Hairdressing and Beauty Therapy", file: "books/hairdressing.pdf", details: "Salon management and beauty skills." },
+      { title: "Food and Nutrition", file: "books/nutrition.pdf", details: "Dietary planning and nutrition basics." }
+      // Add all your courses/books here
+    ];
+
+    function searchLibrary() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const resultCard = document.getElementById("resultCard");
+      resultCard.innerHTML = "";
+
+      const match = library.find(item => item.title.toLowerCase().includes(query));
+
+      if (match) {
+        const card = document.createElement("div");
+        card.className = "course-card";
+        card.style.display = "block";
+        card.innerHTML = `
+          <div class="course-title">${match.title}</div>
+          <div class="course-details">${match.details}</div>
+          <a href="${match.file}" class="download-btn" download>Download Book</a>
+        `;
+        resultCard.appendChild(card);
+      } else {
+        resultCard.innerHTML = `<p>No book found for your search.</p>`;
+      }
+    }
+
+    // Allow pressing Enter to trigger search
+    document.getElementById("searchInput").addEventListener("keyup", e => {
+      if (e.key === "Enter") searchLibrary();
+    });
+  </script>
+</body>
+</html>
+
