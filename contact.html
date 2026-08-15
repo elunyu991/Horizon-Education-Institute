@@ -40,6 +40,7 @@
   <!-- Hero Section -->
   <section class="hero-contact">
     <div class="container text-center">
+      <span class="hero-eyebrow">Education for a Difference</span>
       <h1 class="hero-title">Contact Us</h1>
       <p class="hero-subtitle">We’re here to answer your questions, guide your journey, and welcome you to Horizon Education Institute.</p>
     </div>
@@ -49,11 +50,23 @@
   <section class="contact-info">
     <div class="container">
       <h2 class="section-title">Get in Touch</h2>
-      <div class="contact-details">
-        <p><strong>📍 Location:</strong> Eyoku Road, Senior Quaters, Soroti City West, Uganda</p>
-        <p><strong>📞 Phone:</strong> + (256) 774-390-641</p>
-        <p><strong>📧 Email:</strong> horizon.solot@gmail.com</p>
-        <p><strong>🕒 Office Hours:</strong> Monday – Saturday, 8:00 AM – 5:00 PM</p>
+      <div class="grid-2">
+        <div class="contact-details">
+          <p><strong>📍 Main Campus:</strong> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West, Uganda</p>
+          <p><strong>📬 P.O. Box:</strong> P.O. Box 178, Soroti, Uganda</p>
+          <p><strong>📞 Phone:</strong> + (256) 774-390-641</p>
+          <p><strong>📧 General Email:</strong> horizon.solot@gmail.com</p>
+          <p><strong>🕒 Office Hours:</strong> Monday – Saturday, 8:00 AM – 5:00 PM</p>
+        </div>
+        <div class="card-light align-self-start">
+          <h3 class="card-title">Department Contacts</h3>
+          <ul class="course-list mt-0">
+            <li><strong>Admissions &amp; Academic Registrar:</strong> + (256) 774-390-641</li>
+            <li><strong>Library Services:</strong> horizon.solot@gmail.com</li>
+            <li><strong>Student Affairs &amp; Welfare:</strong> + (256) 782-632-739</li>
+            <li><strong>Finance / Bursar:</strong> horizon.solot@gmail.com</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -62,7 +75,7 @@
   <section class="contact-form">
     <div class="container">
       <h2 class="section-title text-center">Send Us a Message</h2>
-      <form class="form">
+      <form class="form" data-table="contact_messages">
         <div class="form-group">
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required>
@@ -78,6 +91,7 @@
         <div class="form-actions">
           <button type="submit" class="btn-primary">Send Message</button>
         </div>
+        <p id="formStatus" class="text-center mt-24" style="font-weight:600;"></p>
       </form>
     </div>
   </section>
@@ -136,12 +150,14 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2024 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a></p>
+      <p>&copy; 2026 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a> | <a href="admin.html" class="footer-link">Staff Login</a></p>
     </div>
   </footer>
 
 
   <!-- Offline JS -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

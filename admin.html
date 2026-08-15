@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submissions Admin – Horizon Education Institute</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-hero { background: linear-gradient(to right, #1a365d, #2a4a7d); color: #fff; padding: 56px 16px; text-align: center; }
+    .admin-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,33,71,0.08); padding: 28px; margin: 28px 0; }
+    .admin-msg { text-align: center; font-weight: 600; min-height: 24px; margin-top: 12px; }
+    .hidden { display: none !important; }
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .tab-btn { border: 2px solid var(--primary); background: #fff; color: var(--primary); font-weight: 700; padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active, .tab-btn:hover { background: var(--primary); color: #fff; }
+    .row-count { color: #666; margin-bottom: 10px; }
+    .logout-btn { background: #c62828; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .logout-btn:hover { background: #a11f1f; }
+    .admin-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .table-wrap { overflow-x: auto; }
+    .user-chip { display: inline-flex; align-items: center; gap: 8px; background: #eef4ff; color: var(--primary); padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+  </style>
+</head>
+<body class="body-light">
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="admin-hero">
+    <div class="container">
+      <h1 class="hero-title">Submissions Dashboard</h1>
+      <p class="hero-subtitle">Sign in to view applications and messages received through the website.</p>
+    </div>
+  </section>
+
+  <!-- Login -->
+  <section id="loginSection" class="section-white">
+    <div class="container">
+      <div class="admin-card" style="max-width: 480px; margin-left: auto; margin-right: auto;">
+        <h2 class="section-title">Staff Sign In</h2>
+        <form id="adminLoginForm" class="form">
+          <div class="form-group">
+            <label for="adminEmail">Email</label>
+            <input type="email" id="adminEmail" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" required autocomplete="current-password">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Sign In</button>
+          </div>
+        </form>
+        <p id="adminMsg" class="admin-msg"></p>
+        <p class="text-center demo-hint">
+          New here? Create your staff account in Supabase: <strong>Authentication → Users → Add user</strong>.<br>
+          If sign-ups are enabled, you can <a href="#" id="showSignup">create an account here</a>.
+        </p>
+        <form id="adminSignupForm" class="form hidden" style="margin-top:16px;">
+          <div class="form-group">
+            <label for="signupEmail">New Email</label>
+            <input type="email" id="signupEmail" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">New Password (min 6 characters)</label>
+            <input type="password" id="signupPassword" required minlength="6" autocomplete="new-password">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Create Account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboardSection" class="section-white hidden">
+    <div class="container">
+      <div class="admin-actions">
+        <span id="userChip" class="user-chip"></span>
+        <div style="display:flex; gap:10px;">
+          <button id="refreshBtn" class="btn btn-primary">🔄 Refresh</button>
+          <button id="logoutBtn" class="logout-btn">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="applications">📝 Applications</button>
+        <button class="tab-btn" data-tab="contact_messages">✉ Contact Messages</button>
+      </div>
+
+      <div class="admin-card" id="tab-applications">
+        <h2 class="section-title-left">📝 Applications</h2>
+        <p class="row-count" id="appCount"></p>
+        <div class="table-wrap">
+          <table class="fee-table" id="applicationsTable">
+            <thead><tr id="appHead"></tr></thead>
+            <tbody id="appBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-card hidden" id="tab-contact_messages">
+        <h2 class="section-title-left">✉ Contact Messages</h2>
+        <p class="row-count" id="msgCount"></p>
+        <div class="table-wrap">
+          <table class="fee-table" id="messagesTable">
+            <thead><tr id="msgHead"></tr></thead>
+            <tbody id="msgBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p id="dashMsg" class="admin-msg"></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Horizon Education Institute. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/supabase-admin.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

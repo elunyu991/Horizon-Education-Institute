@@ -44,15 +44,16 @@
   <header class="page-header">
     <div class="container text-center">
       <h1 class="page-title">Horizon Education Institute</h1>
-      <p class="page-subtitle">Admissions Form – 2024/2025 Academic Year</p>
+      <p class="page-subtitle">Admissions Form – 2026/2027 Academic Year</p>
     </div>
   </header>
 
   <!-- Admission Form -->
   <main class="form-container">
     <h2 class="form-title">Apply for Admission</h2>
+    <p class="section-text text-center">August &amp; March/April intakes · Application fee <strong>UGX 50,000</strong></p>
     
-    <form class="form">
+    <form class="form" data-table="applications">
       <!-- Personal Information -->
       <div class="form-group">
         <label for="fullname">Full Name</label>
@@ -88,22 +89,67 @@
       <!-- Academic Information -->
       <div class="form-group">
         <label for="education">Highest Education Level</label>
-        <input type="text" id="education" name="education" placeholder="e.g. Diploma in Computer Science" required>
+        <select id="education" name="education" required>
+          <option value="">--Select your highest level--</option>
+          <option>UCE / O-Level</option>
+          <option>UACE / A-Level</option>
+          <option>Certificate</option>
+          <option>Diploma</option>
+          <option>Bachelor's Degree</option>
+          <option>Postgraduate Diploma / Masters</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="program">Program of Interest</label>
-        <input type="text" id="program" name="program" required>
+        <select id="program" name="program" required>
+          <option value="">--Select a program--</option>
+          <optgroup label="Diplomas">
+            <option>Diploma in Computer Science</option>
+            <option>Diploma in Information Technology</option>
+            <option>Diploma in Business Administration</option>
+            <option>Diploma in Accounting</option>
+            <option>Diploma in Secretarial Studies</option>
+            <option>Diploma in Journalism &amp; Mass Media</option>
+            <option>Diploma in Early Childhood Education</option>
+          </optgroup>
+          <optgroup label="Certificates">
+            <option>Certificate in Information Technology</option>
+            <option>Certificate in Computer Repair &amp; Maintenance</option>
+            <option>Certificate in Journalism &amp; Media Studies</option>
+            <option>Certificate in Catering &amp; Hotel Management</option>
+            <option>Certificate in Secretarial Studies</option>
+          </optgroup>
+          <optgroup label="Bridging">
+            <option>Higher Education Access Certificate (HEAC)</option>
+          </optgroup>
+          <optgroup label="Short &amp; Professional Courses">
+            <option>Computer Applications</option>
+            <option>QuickBooks Accounting</option>
+            <option>Tailoring &amp; Garment Making</option>
+            <option>Hairdressing &amp; Beauty Therapy</option>
+            <option>Bakery &amp; Cookery</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="intake">Preferred Intake</label>
+        <select id="intake" name="intake">
+          <option>August 2026 Intake (main)</option>
+          <option>March/April 2027 Intake</option>
+        </select>
       </div>
 
       <!-- Submit Button -->
       <div class="form-actions">
         <button type="submit" class="btn-primary">Submit Application</button>
       </div>
+      <p id="formStatus" class="text-center mt-24 text-semibold"></p>
+      <p class="section-text text-center mt-0 text-sm">💳 Application fee: <strong>UGX 50,000</strong> — pay via bank or mobile money and attach proof of payment. Flexible tuition payment plans available.</p>
     </form>
   </main>
 
-  <!-- Footer -->
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-grid">
@@ -158,12 +204,14 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2024 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a></p>
+      <p>&copy; 2026 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a> | <a href="admin.html" class="footer-link">Staff Login</a></p>
     </div>
   </footer>
 
 
   <!-- Offline JS -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
