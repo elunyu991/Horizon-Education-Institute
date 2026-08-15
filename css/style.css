@@ -515,3 +515,10 @@ img { max-width: 100%; height: auto; }
 
 /* Demo-login hint on the student portal */
 .demo-hint { color: #888; font-size: 13px; margin-top: 12px; }
+
+/* Content-page utilities (legal & program detail pages) */
+.container-narrow { max-width: 860px; margin: 0 auto; }
+.section-title-left { text-align: left; font-size: 22px; }
+.sub-heading { font-size: 20px; font-weight: 700; color: var(--dark); margin: 0 0 12px; }
+.mt-24 { margin-top: 24px; }
+.mt-40 { margin-top: 40px; }
