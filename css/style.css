@@ -234,7 +234,7 @@ body { font-family: Arial, sans-serif; }
 .gallery-card { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: box-shadow 0.2s; }
 .gallery-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
 .gallery-img { width: 100%; height: 250px; object-fit: cover; }
-.gallery-caption { background: #f7fafc; padding:}
+.gallery-caption { background: #f7fafc; padding: 12px; }
 
 
 /* Admissions Hero */
@@ -334,3 +334,110 @@ body { font-family: Arial, sans-serif; }
   color: var(--dark);
   font-weight: bold;
 }
+
+/* ==========================================================
+   RESPONSIVE LAYER — mobile navigation, fluid layouts,
+   and small-screen polish for all devices.
+   ========================================================== */
+
+/* Safety net: clip horizontal overflow without creating a scroll
+   container (which would break the sticky header) */
+html, body { overflow-x: clip; }
+img { max-width: 100%; height: auto; }
+
+/* Social buttons: pill shape so labels fit at any width */
+.social-btn {
+  width: auto;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Date rows wrap gracefully on narrow screens */
+.date-row { flex-wrap: wrap; gap: 4px 12px; }
+
+/* Hide the hamburger on desktop */
+@media (min-width: 1024px) {
+  .menu-btn { display: none; }
+}
+
+/* ---------- Mobile & tablet (below 1024px) ---------- */
+@media (max-width: 1023.98px) {
+  /* Drop-down mobile navigation */
+  .nav { position: relative; }
+  .nav-links {
+    display: none !important; /* hidden until toggled */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    background: #fff;
+    border-top: 1px solid #eef0f3;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+    padding: 10px 16px 16px;
+    margin: 0;
+  }
+  .nav-links.open { display: flex !important; }
+  .nav-link {
+    display: block;
+    padding: 12px 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    border-bottom: 1px solid #f1f3f6;
+  }
+  .nav-link:last-child { border-bottom: none; }
+  .nav-link.active { background: var(--accent); color: #111; }
+  .nav-link:hover { background: #f5f7fa; }
+
+  /* Keep the Apply button reachable on phones */
+  .nav-actions .apply-btn { display: inline-block; font-size: 13px; padding: 8px 12px; }
+
+  /* Compact logo/nav */
+  .logo-img { width: 64px; height: 56px; }
+  .logo-text { font-size: 17px; }
+  .nav { padding: 10px 0; }
+
+  /* Quick links wrap instead of overflowing */
+  .quick-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .quick-link { margin-right: 0; font-size: 15px; }
+}
+
+/* ---------- Small phones & narrow tablets (below 768px) ----------
+   Kept separate from the 1024px query so the existing tablet
+   styles (@media min-width: 768px) keep winning at 768px+.
+   ---------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  /* Typography */
+  .hero-content .hero-title { font-size: 30px; }
+  .hero-about .hero-title, .hero-campus .hero-title,
+  .hero-contact .hero-title, .hero-programs .hero-title { font-size: 30px; }
+  .hero-content .hero-subtitle { font-size: 16px; }
+  .hero .hero-slider { height: 300px; }
+  .section-title { font-size: 26px; }
+  .section-subtitle { font-size: 16px; }
+
+  /* Section spacing */
+  .programs, .admissions { padding: 48px 16px; }
+  .section-white, .section-light, .contact-info, .contact-form { padding: 48px 16px; }
+  .hero-contact, .hero-campus, .hero-about, .hero-programs, .admissions-hero { padding: 56px 16px; }
+  .page-header { padding: 32px 16px; }
+  .form-container { padding: 24px 18px; margin: 24px 12px; }
+  .footer .container { padding: 36px 16px; }
+  .footer-bottom { padding: 14px 10px; font-size: 13px; }
+
+  /* Gallery & testimonial images */
+  .gallery-img, .testimonial-img { height: 200px; }
+
+  /* Announcement bar */
+  .announcement-text { font-size: 13px; line-height: 1.4; }
+}
+
+/* Demo-login hint on the student portal */
+.demo-hint { color: #888; font-size: 13px; margin-top: 12px; }

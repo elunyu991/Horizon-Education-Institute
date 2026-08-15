@@ -14,8 +14,6 @@
       --dark: #1a1a1a;
     }
     body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
-    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
-    h1 { margin: 0; font-size: 2rem; }
     .library-container { max-width: 1200px; margin: 30px auto; padding: 20px; }
     .search-box { width: 100%; padding: 14px; border: 1px solid var(--secondary); border-radius: 6px; margin-bottom: 30px; font-size: 1rem; }
     .course-category { margin-bottom: 40px; }
@@ -28,15 +26,43 @@
     .download-btn { display: inline-block; padding: 10px 14px; background: var(--secondary); color: #fff; border-radius: 4px; text-decoration: none; font-size: 1rem; transition: background 0.3s ease; }
     .download-btn:hover { background: var(--primary); }
     @media (max-width: 600px) {
-      h1 { font-size: 1.8rem; }
       .course-category h2 { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Horizon Education Institute – Student Library</h1>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
   </header>
+
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-title">Student Library</h1>
+      <p class="page-subtitle">Browse certificate, diploma, and short-course materials</p>
+    </div>
+  </section>
+
   <div class="library-container">
     <input type="text" id="search" class="search-box" placeholder="Search courses...">
 
@@ -116,6 +142,7 @@
   </footer>
 
 
+  <script src="js/script.js"></script>
   <script>
     // Example: Replace "books/sample.pdf" with actual file paths
     const certificateCourses = [

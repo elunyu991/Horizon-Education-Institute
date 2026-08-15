@@ -14,10 +14,7 @@
       --dark: #1a1a1a;
     }
     body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
-    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
-    h1 { margin: 0; font-size: 2rem; }
-    p.page-subtitle { margin: 5px 0 0; font-size: 1rem; }
-    .container { max-width: 800px; margin: 40px auto; padding: 20px; text-align: center; }
+    .library-search { max-width: 800px; margin: 40px auto; padding: 20px; text-align: center; }
     .search-box { width: 100%; padding: 14px; border: 1px solid var(--secondary); border-radius: 6px; margin-bottom: 20px; font-size: 1rem; }
     .btn-primary { padding: 10px 16px; background: var(--secondary); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
     .btn-primary:hover { background: var(--primary); }
@@ -26,20 +23,45 @@
     .course-details { font-size: 0.95rem; color: #555; margin-bottom: 15px; }
     .download-btn { display: inline-block; padding: 10px 14px; background: var(--secondary); color: #fff; border-radius: 4px; text-decoration: none; font-size: 0.85rem; transition: background 0.3s ease; }
     .download-btn:hover { background: var(--primary); }
-    footer { background: var(--primary); color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
     @media (max-width: 600px) {
-      h1 { font-size: 1.6rem; }
       .course-title { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Digital Library</h1>
-    <p class="page-subtitle">Search and access e-books, journals, and articles</p>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <div class="container">
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-title">Digital Library</h1>
+      <p class="page-subtitle">Search and access e-books, journals, and articles</p>
+    </div>
+  </section>
+
+  <div class="library-search">
     <input type="text" id="searchInput" class="search-box" placeholder="Search courses or books...">
     <button onclick="searchLibrary()" class="btn-primary">Search</button>
     <div id="resultCard"></div>
@@ -104,6 +126,7 @@
   </footer>
 
 
+  <script src="js/script.js"></script>
   <script>
     // Example library data (replace file paths with your actual PDFs/DOCs)
     const library = [

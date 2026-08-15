@@ -14,8 +14,6 @@
       --dark: #1a1a1a;
     }
     body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
-    header { background: var(--primary); color: #fff; padding: 20px; text-align: center; }
-    h1 { margin: 0; font-size: 2rem; }
     .calendar-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
     .timeline { position: relative; margin: 0; padding: 0; }
     .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: var(--secondary); transform: translateX(-50%); }
@@ -28,17 +26,45 @@
     .event-details { font-size: 0.9rem; color: #555; display: none; }
     .event-card.active .event-details { display: block; }
     .timeline::after { content: ''; display: table; clear: both; }
-    footer { background: var(--primary); color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
     @media (max-width: 768px) {
-      .event-card { width: 90%; float: none; margin-left: auto; margin-right: auto; }
-      .timeline::before { left: 20px; }
+      .event-card { width: calc(100% - 40px); float: none; margin-left: 40px; margin-right: 0; }
+      .timeline::before { left: 12px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Horizon Education Institute Academic Calendar 2026/2027</h1>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
   </header>
+
+  <section class="page-header">
+    <div class="container text-center">
+      <h1 class="page-title">Academic Calendar 2026/2027</h1>
+      <p class="page-subtitle">Key dates and events for the academic year</p>
+    </div>
+  </section>
+
   <div class="calendar-container">
     <div class="timeline">
       <div class="event-card left">
@@ -137,6 +163,7 @@
     </div>
   </footer>
 
+  <script src="js/script.js"></script>
   <script>
     document.querySelectorAll(".event-card").forEach(card => {
       card.addEventListener("click", () => {

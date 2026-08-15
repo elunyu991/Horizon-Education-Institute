@@ -1,4 +1,8 @@
-// Hero slider fade
+// ==========================================================
+// Horizon Education Institute — global site scripts
+// ==========================================================
+
+// Hero slider fade (homepage)
 (function () {
   const slides = document.querySelectorAll('.hero-slider .slide');
   if (!slides.length) return;
@@ -18,7 +22,7 @@
   }, 5000);
 })();
 
-// Announcement bar toggle
+// Announcement bar toggle (homepage)
 (function () {
   const announcement = document.getElementById('announcement');
   if (!announcement) return;
@@ -36,52 +40,44 @@
   }, 4000);
 })();
 
-// Placeholder JS for future interactivity
-// Example: simple form submission alert
+// Mobile navigation toggle (all pages)
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector(".menu-btn");
+  const navLinks = document.querySelector(".nav-links");
+  if (!menuBtn || !navLinks) return;
+
+  menuBtn.setAttribute("aria-expanded", "false");
+
+  const close = () => {
+    navLinks.classList.remove("open");
+    menuBtn.textContent = "☰";
+    menuBtn.setAttribute("aria-expanded", "false");
+  };
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuBtn.textContent = isOpen ? "✕" : "☰";
+    menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // Close the menu after choosing a destination
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+});
+
+// Generic form handling (contact / apply pages)
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".form");
-  if (form) {
+  // Skip the student-portal login form — it has its own handler below
+  if (form && form.id !== "loginForm") {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Your message has been sent!");
+      alert("Your submission has been received successfully!");
+      form.reset();
     });
   }
 });
 
-
-// Simple form submission alert
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".form");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("Your application has been submitted!");
-    });
-  }
-});
-
-
-
-// Placeholder JS for admissions page
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Admissions page loaded successfully.");
-});
-
-
-// Placeholder JS for About page
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("About page loaded successfully.");
-});
-
-
-// Placeholder JS for Programs page
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Programs page loaded successfully.");
-});
-
-// =======================
-// Student Portal Logic
-// =======================
+// Student Portal login (demo credentials: student123 / portal2026)
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
@@ -92,9 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const message = document.getElementById("loginMessage");
 
       if (id === "student123" && pass === "portal2026") {
-        message.textContent = "Login successful! Redirecting...";
+        message.textContent = "Login successful! Welcome back, student.";
         message.style.color = "green";
-        setTimeout(() => window.location.href = "dashboard.html", 1500);
+        loginForm.reset();
       } else {
         message.textContent = "Invalid ID or password.";
         message.style.color = "red";
@@ -103,9 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// =======================
-// Library Search Logic
-// =======================
+// Digital Library search (Library.html)
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const resultsList = document.getElementById("resultsList");
