@@ -39,6 +39,20 @@
   function today() {
     return new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
   }
+  // Friendly display name: full name → email prefix → generic.
+  function displayName(p) {
+    if (p && p.fullname && p.fullname.trim()) return p.fullname.trim();
+    if (session && session.email) {
+      var prefix = session.email.split("@")[0].replace(/[._-]+/g, " ").trim();
+      if (prefix) {
+        return prefix.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      }
+    }
+    return "Student";
+  }
+  function firstName(p) {
+    return displayName(p).split(" ")[0];
+  }
   function scopedKey(key) {
     var id = session && session.email ? session.email.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase() : "guest";
     return key + "_" + id;
@@ -106,9 +120,9 @@
     if (!pulled) await syncProfileUp();
     var p = getProfile();
     if (p) {
-      byId("portalSideName").textContent = p.fullname || p.email;
+      byId("portalSideName").textContent = displayName(p);
       byId("portalSideProgram").textContent = p.program || "";
-      byId("portalTopName").textContent = p.fullname || p.email;
+      byId("portalTopName").textContent = displayName(p);
     }
   }
 
@@ -174,9 +188,9 @@
     dashView.hidden = false;
     var p = getProfile();
     if (p) {
-      byId("portalSideName").textContent = p.fullname || p.email;
+      byId("portalSideName").textContent = displayName(p);
       byId("portalSideProgram").textContent = p.program || "";
-      byId("portalTopName").textContent = p.fullname || p.email;
+      byId("portalTopName").textContent = displayName(p);
     }
     go(section || "overview");
     window.scrollTo(0, 0);
@@ -208,7 +222,8 @@
       setMsg(authMsg, res.message || "Invalid email or password.");
       return;
     }
-    session = { token: res.token, email: res.user.email, name: res.user.user_metadata && res.user.user_metadata.full_name, uid: res.user.id };
+    var metaName = res.user && res.user.user_metadata && res.user.user_metadata.full_name;
+    session = { token: res.token, email: res.user.email, name: metaName || res.user.email, uid: res.user.id };
     try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch (err) { /* ignore */ }
     var p = getProfile();
     if (p && !p.fullname && session.name) { p.fullname = session.name; lsSet(PROFILE_KEY, p); }
@@ -233,7 +248,7 @@
     if (!SB) { setMsg(authMsg, "Portal services are not configured yet. Please try again later."); return; }
     byId("regBtn").disabled = true;
     byId("regBtn").textContent = "Creating account…";
-    var res = await SB.signUp(email, pass);
+    var res = await SB.signUp(email, pass, { full_name: fullname });
     byId("regBtn").disabled = false;
     byId("regBtn").textContent = "Create Account";
     if (!res.ok) {
@@ -323,7 +338,7 @@
       ["fees", "💳", "Pay Fees"], ["library", "🔎", "Library"],
       ["events", "📅", "Events"], ["jobs", "💼", "Job Board"]
     ];
-    return sectionIntro("Welcome back, " + (p.fullname || "Student") + " 👋",
+    return sectionIntro("Welcome back, " + firstName(p) + " 👋",
       "Here is a snapshot of your academic life at Horizon Education Institute.")
       + '<div class="p-stat-grid">'
       + statTile(p.studentId, "Student ID", "🎓")

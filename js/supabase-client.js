@@ -63,13 +63,16 @@
   }
 
   // Create an account (only works if sign-ups are enabled in Auth settings).
-  async function signUp(email, password) {
+  // Optional metadata (e.g. { full_name }) is stored on the user for later use.
+  async function signUp(email, password, metadata) {
     if (!isConfigured()) return { ok: false, message: "Supabase is not configured (see js/supabase-config.js)." };
     try {
+      const body = { email: email, password: password };
+      if (metadata && typeof metadata === "object") body.data = metadata;
       const res = await fetch(cfg.url + "/auth/v1/signup", {
         method: "POST",
         headers: baseHeaders(),
-        body: JSON.stringify({ email: email, password: password })
+        body: JSON.stringify(body)
       });
       const j = await res.json().catch(() => ({}));
       if (!res.ok) return { ok: false, message: j.msg || j.error_description || "Sign-up failed." };

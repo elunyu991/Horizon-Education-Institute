@@ -17,6 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const SESSION_KEY = "hei_supabase_session";
   let token = null;
 
+  // Friendly display name: stored name → email prefix → generic.
+  function displayName(s) {
+    if (s && s.name && s.name.trim() && s.name !== s.email) return s.name.trim();
+    if (s && s.email) {
+      const prefix = s.email.split("@")[0].replace(/[._-]+/g, " ").trim();
+      if (prefix) {
+        return prefix.replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+    }
+    return "there";
+  }
+
+  function applyWelcome(s) {
+    const el = document.getElementById("adminWelcome");
+    if (el) el.textContent = "Welcome, " + displayName(s) + " 👋";
+    userChip.textContent = "👤 " + displayName(s);
+  }
+
   const setMsg = (el, text, color) => {
     if (!el) return;
     el.textContent = text;
@@ -32,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
       if (s && s.token) {
         token = s.token;
-        userChip.textContent = "👤 " + (s.email || "Signed in");
+        applyWelcome(s);
         show(dashSection); hide(loginSection);
         loadAll();
       }
@@ -52,8 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await api.signIn(email, password);
     if (res.ok) {
       token = res.token;
-      saveSession({ token: res.token, email });
-      userChip.textContent = "👤 " + email;
+      const meta = res.user && res.user.user_metadata && res.user.user_metadata.full_name;
+      const s = { token: res.token, email, name: meta || email };
+      saveSession(s);
+      applyWelcome(s);
       hide(loginSection); show(dashSection);
       loadAll();
     } else {
@@ -69,10 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const name = document.getElementById("signupName").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value;
     setMsg(adminMsg, "Creating account…", "#666");
-    const res = await api.signUp(email, password);
+    const res = await api.signUp(email, password, { full_name: name });
     if (res.ok) {
       setMsg(adminMsg, "Account created! If email confirmation is enabled in Supabase, check your inbox and confirm first, then sign in above.", "#1e7e34");
       signupForm.reset();

@@ -80,6 +80,10 @@
         </p>
         <form id="adminSignupForm" class="form hidden" style="margin-top:16px;">
           <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" required autocomplete="name">
+          </div>
+          <div class="form-group">
             <label for="signupEmail">New Email</label>
             <input type="email" id="signupEmail" required autocomplete="email">
           </div>
@@ -98,6 +102,8 @@
   <!-- Dashboard -->
   <section id="dashboardSection" class="section-white hidden">
     <div class="container">
+      <h2 class="section-title" id="adminWelcome">Welcome 👋</h2>
+      <p class="text-center" style="color:#667; margin-top:-14px; margin-bottom:20px;">Here is everything your institution has received through the website.</p>
       <div class="admin-actions">
         <span id="userChip" class="user-chip"></span>
         <div style="display:flex; gap:10px;">
