@@ -17,11 +17,11 @@ you only need to complete the 4 steps below.
 This creates two tables — `applications` and `contact_messages` — with row-level security
 so that **anyone can submit** but **only you (staff) can read** the submissions.
 
-> ⚠️ **Important:** the SELECT policies in `schema.sql` are locked to the email
-> `horizon.solot@gmail.com`. Before running the SQL, open the file and replace that
-> address in **both** `create policy ... for select` blocks with your own staff email
-> (the one you will use to sign in on `admin.html`). If you leave the wrong address,
-> sign-in will succeed but the tables will show a permission error.
+> ⚠️ **Important:** the SELECT policies in `schema.sql` contain the placeholder
+> `YOUR_STAFF_EMAIL`. Before running the SQL, open the file and replace `YOUR_STAFF_EMAIL`
+> in **both** `create policy ... for select` blocks with your own staff email (the one you
+> will use to sign in on `admin.html`). If you leave the placeholder or use the wrong
+> address, sign-in will succeed but the tables will show a permission error.
 
 ---
 

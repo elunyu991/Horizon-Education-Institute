@@ -43,14 +43,16 @@ create policy "contact_messages_anon_insert"
   with check (true);
 
 -- Only signed-in users (the client / staff) may READ submissions.
--- IMPORTANT: replace the email below with YOUR staff email address, so no
--- other signed-up user can read applicants' personal data.
+-- IMPORTANT: replace 'YOUR_STAFF_EMAIL' below with YOUR staff email address
+-- (the one you will sign in with on admin.html). If you leave the placeholder,
+-- or use the wrong address, sign-in will succeed but tables will show a
+-- permission error.
 create policy "applications_auth_select"
   on public.applications for select
   to authenticated
-  using (auth.jwt() ->> 'email' = 'horizon.solot@gmail.com');
+  using (auth.jwt() ->> 'email' = 'YOUR_STAFF_EMAIL');
 
 create policy "contact_messages_auth_select"
   on public.contact_messages for select
   to authenticated
-  using (auth.jwt() ->> 'email' = 'horizon.solot@gmail.com');
+  using (auth.jwt() ->> 'email' = 'YOUR_STAFF_EMAIL');
