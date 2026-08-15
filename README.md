@@ -16,7 +16,7 @@ Official website for **Horizon Education Institute**, Soroti City West, Uganda �
 | Academic Calendar | `academic-calendar.html` |
 | Digital Library | `Library.html` |
 | Student Library | `Student-Library.html` |
-| Student Portal | `student_portal.html` |
+| Student Portal | `student_portal.html` (register → login → full dashboard) |
 
 ## Run locally
 
@@ -36,7 +36,7 @@ Then visit `http://localhost:8000`.
 
 - Plain **HTML5** markup
 - **CSS3** with a responsive layout (mobile-first navigation, fluid grids)
-- **Vanilla JavaScript** (hero slider, mobile menu, search, demo login)
+- **Vanilla JavaScript** (hero slider, mobile menu, search, student portal, Supabase forms)
 
 No build step or package manager required.
 

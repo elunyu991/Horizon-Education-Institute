@@ -94,5 +94,40 @@
     }
   }
 
-  window.HorizonSupabase = { isConfigured, submit, signIn, signUp, loadRows };
+  // UPSERT the signed-in student's profile row in student_profiles.
+  // The payload must include user_id (the student's auth uid); RLS only
+  // allows writes where auth.uid() = user_id, so no one can touch another
+  // student's row.
+  async function saveProfile(profile, token) {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured (see js/supabase-config.js)." };
+    try {
+      const res = await fetch(cfg.url + "/rest/v1/student_profiles?on_conflict=user_id", {
+        method: "POST",
+        headers: { ...baseHeaders(token), Prefer: "resolution=merge-duplicates,return=minimal" },
+        body: JSON.stringify(profile)
+      });
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, message: "Network error while saving your profile." };
+    }
+  }
+
+  // Fetch the signed-in student's OWN profile row (RLS returns only their row).
+  async function loadOwnProfile(token) {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured (see js/supabase-config.js)." };
+    try {
+      const res = await fetch(cfg.url + "/rest/v1/student_profiles?select=*&limit=1", {
+        method: "GET",
+        headers: baseHeaders(token)
+      });
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      const rows = await res.json();
+      return { ok: true, profile: rows && rows[0] ? rows[0] : null };
+    } catch (e) {
+      return { ok: false, message: "Network error while loading your profile." };
+    }
+  }
+
+  window.HorizonSupabase = { isConfigured, submit, signIn, signUp, loadRows, saveProfile, loadOwnProfile };
 })();

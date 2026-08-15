@@ -151,9 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Load all submissions ---
   async function loadAll() {
     setMsg(dashMsg, "Loading…", "#666");
-    const [apps, msgs] = await Promise.all([
+    const [apps, msgs, studs] = await Promise.all([
       api.loadRows("applications", token),
-      api.loadRows("contact_messages", token)
+      api.loadRows("contact_messages", token),
+      api.loadRows("student_profiles", token)
     ]);
 
     if (apps.ok) {
@@ -180,7 +181,19 @@ document.addEventListener("DOMContentLoaded", () => {
       setMsg(dashMsg, (dashMsg.textContent ? dashMsg.textContent + " · " : "") + "Messages: " + msgs.message);
     }
 
-    if (apps.ok && msgs.ok) setMsg(dashMsg, "");
+    if (studs.ok) {
+      renderTable(
+        document.getElementById("studHead"),
+        document.getElementById("studBody"),
+        studs.rows,
+        document.getElementById("studCount"),
+        "Registered students"
+      );
+    } else if (!handleAuthError(studs.message)) {
+      setMsg(dashMsg, (dashMsg.textContent ? dashMsg.textContent + " · " : "") + "Students: " + studs.message);
+    }
+
+    if (apps.ok && msgs.ok && studs.ok) setMsg(dashMsg, "");
   }
 
   refreshBtn.addEventListener("click", loadAll);

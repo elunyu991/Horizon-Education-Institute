@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Portal - Horizon Education Institute</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -32,28 +33,126 @@
     </div>
   </header>
 
-  <div class="page-header">
-    <h1 class="page-title">Student Portal</h1>
-    <p class="page-subtitle">Login to access your dashboard, results, and course registration</p>
-  </div>
+  <!-- ============ AUTH VIEW (login / register) ============ -->
+  <section id="portalAuth" class="portal-auth">
+    <div class="portal-auth-card">
+      <div class="portal-auth-head">
+        <div class="portal-auth-logo">HEI</div>
+        <h1 class="portal-auth-title">Student Portal</h1>
+        <p class="portal-auth-sub">Access your dashboard, results, and course registration</p>
+      </div>
 
-  <div class="form-container">
-    <h2 class="form-title">Login</h2>
-    <form id="loginForm" class="form">
-      <div class="form-group">
-        <label for="studentID">Student ID</label>
-        <input type="text" id="studentID" required>
+      <div class="portal-tabs" role="tablist">
+        <button class="portal-tab active" data-auth-tab="login" role="tab">Login</button>
+        <button class="portal-tab" data-auth-tab="register" role="tab">Register</button>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" required>
+
+      <!-- Login -->
+      <form id="portalLoginForm" class="form" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Your password" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary btn-block" id="loginBtn">Login</button>
+        </div>
+      </form>
+
+      <!-- Register -->
+      <form id="portalRegisterForm" class="form" hidden novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regFullname">Full name</label>
+            <input type="text" id="regFullname" placeholder="e.g. Akello Joan" required>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email address</label>
+            <input type="email" id="regEmail" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regPhone">Phone number</label>
+            <input type="tel" id="regPhone" placeholder="+256 7xx xxx xxx" required>
+          </div>
+          <div class="form-group">
+            <label for="regProgram">Program</label>
+            <select id="regProgram" required></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regIntake">Intake</label>
+            <select id="regIntake" required></select>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password (min 6 characters)</label>
+            <input type="password" id="regPassword" minlength="6" placeholder="Create a password" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="regPassword2">Confirm password</label>
+          <input type="password" id="regPassword2" placeholder="Repeat your password" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary btn-block" id="regBtn">Create Account</button>
+        </div>
+      </form>
+
+      <p id="portalAuthMsg" class="text-center portal-msg"></p>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD VIEW ============ -->
+  <div id="portalDash" class="portal-dash" hidden>
+    <aside class="portal-sidebar" id="portalSidebar">
+      <div class="portal-sidebar-head">
+        <div class="portal-sidebar-logo">HEI</div>
+        <div class="portal-sidebar-name" id="portalSideName">Student</div>
+        <div class="portal-sidebar-sub" id="portalSideProgram"></div>
       </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-primary">Login</button>
+      <nav class="portal-nav" id="portalNav">
+        <button class="portal-nav-item active" data-section="overview"><span class="pn-ico">🏠</span> Dashboard</button>
+        <div class="portal-nav-group">Academic Information</div>
+        <button class="portal-nav-item" data-section="registration"><span class="pn-ico">📚</span> Course Registration</button>
+        <button class="portal-nav-item" data-section="grades"><span class="pn-ico">📊</span> Grades &amp; Transcripts</button>
+        <button class="portal-nav-item" data-section="assignments"><span class="pn-ico">📝</span> Assignments &amp; Exams</button>
+        <button class="portal-nav-item" data-section="materials"><span class="pn-ico">📖</span> Learning Materials</button>
+        <div class="portal-nav-group">Administrative Services</div>
+        <button class="portal-nav-item" data-section="profile"><span class="pn-ico">👤</span> Profile Management</button>
+        <button class="portal-nav-item" data-section="fees"><span class="pn-ico">💳</span> Fee Payments</button>
+        <button class="portal-nav-item" data-section="library"><span class="pn-ico">🔎</span> Library Access</button>
+        <button class="portal-nav-item" data-section="hostel"><span class="pn-ico">🏠</span> Hostel / Accommodation</button>
+        <div class="portal-nav-group">Communication &amp; Support</div>
+        <button class="portal-nav-item" data-section="announcements"><span class="pn-ico">📢</span> Announcements</button>
+        <button class="portal-nav-item" data-section="helpdesk"><span class="pn-ico">💬</span> Messaging / Help Desk</button>
+        <button class="portal-nav-item" data-section="events"><span class="pn-ico">📅</span> Events Calendar</button>
+        <div class="portal-nav-group">Extras</div>
+        <button class="portal-nav-item" data-section="jobs"><span class="pn-ico">💼</span> Internship / Job Board</button>
+        <button class="portal-nav-item" data-section="clubs"><span class="pn-ico">🎭</span> Clubs &amp; Societies</button>
+        <button class="portal-nav-item" data-section="wellness"><span class="pn-ico">🩺</span> Counseling &amp; Wellness</button>
+        <button class="portal-nav-item" data-section="feedback"><span class="pn-ico">📋</span> Feedback Forms</button>
+      </nav>
+      <div class="portal-sidebar-foot">
+        <button id="portalLogout" class="btn btn-outline-light btn-block">Logout</button>
       </div>
-    </form>
-    <p id="loginMessage" class="text-center"></p>
-    <p class="demo-hint text-center">Demo login — ID: <strong>student123</strong> &nbsp;·&nbsp; Password: <strong>portal2026</strong></p>
+    </aside>
+
+    <div class="portal-main">
+      <header class="portal-topbar">
+        <button class="portal-menu-btn" id="portalMenuBtn" aria-label="Toggle menu">☰</button>
+        <div class="portal-topbar-title" id="portalTopTitle">Dashboard</div>
+        <div class="portal-topbar-user">
+          <span class="portal-topbar-name" id="portalTopName"></span>
+          <span class="portal-topbar-badge">STUDENT</span>
+        </div>
+      </header>
+      <main class="portal-content" id="portalContent"></main>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -114,6 +213,10 @@
     </div>
   </footer>
 
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js?v=2"></script>
+  <script src="js/student-data.js"></script>
+  <script src="js/student-portal.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

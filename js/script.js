@@ -115,27 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Student Portal login (demo credentials: student123 / portal2026)
-document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const id = document.getElementById("studentID").value;
-      const pass = document.getElementById("password").value;
-      const message = document.getElementById("loginMessage");
-
-      if (id === "student123" && pass === "portal2026") {
-        message.textContent = "Login successful! Welcome back, student.";
-        message.style.color = "green";
-        loginForm.reset();
-      } else {
-        message.textContent = "Invalid ID or password.";
-        message.style.color = "red";
-      }
-    });
-  }
-});
 
 // Digital Library search (Library.html)
 document.addEventListener("DOMContentLoaded", () => {

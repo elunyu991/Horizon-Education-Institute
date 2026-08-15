@@ -109,6 +109,7 @@
       <div class="tabs">
         <button class="tab-btn active" data-tab="applications">📝 Applications</button>
         <button class="tab-btn" data-tab="contact_messages">✉ Contact Messages</button>
+        <button class="tab-btn" data-tab="students">🎓 Students</button>
       </div>
 
       <div class="admin-card" id="tab-applications">
@@ -129,6 +130,17 @@
           <table class="fee-table" id="messagesTable">
             <thead><tr id="msgHead"></tr></thead>
             <tbody id="msgBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-card hidden" id="tab-students">
+        <h2 class="section-title-left">🎓 Registered Students</h2>
+        <p class="row-count" id="studCount"></p>
+        <div class="table-wrap">
+          <table class="fee-table" id="studentsTable">
+            <thead><tr id="studHead"></tr></thead>
+            <tbody id="studBody"></tbody>
           </table>
         </div>
       </div>
@@ -174,7 +186,7 @@
   </footer>
 
   <script src="js/supabase-config.js"></script>
-  <script src="js/supabase-client.js"></script>
+  <script src="js/supabase-client.js?v=2"></script>
   <script src="js/supabase-admin.js"></script>
   <script src="js/script.js"></script>
 </body>

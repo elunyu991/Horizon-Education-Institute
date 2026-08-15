@@ -19,8 +19,14 @@ and verified against your project).
    its contents into the editor.
 4. Click **Run**.
 
-This creates two tables — `applications` and `contact_messages` — with row-level security
-so that **anyone can submit** but **only you (staff) can read** the submissions.
+This creates three tables — `applications`, `contact_messages`, and `student_profiles` —
+with row-level security so that **anyone can submit** but **only you (staff) can read**
+the submissions. Student registration details in `student_profiles` are locked further:
+a student can only see and edit **their own** row.
+
+> ✅ If you already ran an older version of this schema, re-run the file — it is safe to
+> re-run (tables use `IF NOT EXISTS` and policies are dropped first). This adds the new
+> `student_profiles` table.
 
 > ⚠️ **Important:** the SELECT policies in `schema.sql` contain the placeholder
 > `YOUR_STAFF_EMAIL`. Before running the SQL, open the file and replace `YOUR_STAFF_EMAIL`
@@ -76,6 +82,24 @@ application and contact message, newest first.
 
 No build step, no npm packages, no backend server — it works on any static host
 (including GitHub Pages).
+
+## Student accounts (student portal)
+
+The student portal (`student_portal.html`) uses **Supabase Auth** for real accounts:
+students **register first**, then log in, then land on their dashboard. Their
+registration details (name, phone, program, intake, emergency contacts, …) are stored
+in the **`student_profiles`** table with row-level security — each student can only read
+and edit their own row, and staff can view all students from the **Students** tab on
+`admin.html`.
+
+- Make sure **Authentication → Providers → Email → Enable sign-ups** is **ON**
+  (this is the default). Students create their own accounts from the portal's
+  **Register** tab.
+- If **Confirm email** is enabled, new students must click the confirmation link
+  before their first login — the portal tells them to check their inbox.
+- The RLS policies in `schema.sql` only apply to the `applications` and
+  `contact_messages` tables; they do **not** affect student authentication or the
+  portal dashboard (portal data lives in the browser via localStorage).
 
 ## Notes
 
