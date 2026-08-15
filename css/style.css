@@ -71,12 +71,85 @@ body { font-family: Arial, sans-serif; color: #1a1a1a; background: #ffffff; }
 .btn-accent-dark { background: var(--accent); color: #111; }
 .btn-outline-light { border: 2px solid #fff; color: #fff; }
 
-/* Quick Links */
-.quick-links { background: var(--light); border-bottom: 1px solid #eee; }
-.quick-links .container { padding: 16px; }
-.quick-links { padding: 16px; }
-.quick-link { color: var(--dark); text-decoration: none; font-weight: 500; margin-right: 20px; }
-.quick-link:hover { color: var(--primary); }
+/* Quick Access */
+.quick-links {
+  background: linear-gradient(180deg, #ffffff 0%, var(--light) 100%);
+  padding: 48px 16px 56px;
+  border-bottom: 1px solid #e8ecf3;
+}
+.quick-links .container { max-width: 1140px; margin: 0 auto; }
+.quick-links-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--dark);
+  text-align: center;
+  margin: 0 0 6px;
+}
+.quick-links-subtitle {
+  font-size: 16px;
+  color: #667;
+  text-align: center;
+  margin: 0 0 32px;
+}
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 16px;
+  background: #fff;
+  border: 1px solid #e8ecf3;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--dark);
+  box-shadow: 0 2px 8px rgba(0, 33, 71, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.quick-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 33, 71, 0.12);
+  border-color: var(--secondary);
+}
+.quick-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.quick-link-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: #eaf1fb;
+  border-radius: 12px;
+  transition: transform 0.25s ease;
+}
+.quick-link:hover .quick-link-icon { transform: scale(1.08) rotate(-6deg); }
+.quick-link-text { display: flex; flex-direction: column; min-width: 0; }
+.quick-link-label { font-weight: 700; font-size: 15px; color: var(--dark); }
+.quick-link-hint { font-size: 12px; color: #6b7280; margin-top: 2px; }
+.quick-link-arrow {
+  margin-left: auto;
+  font-size: 18px;
+  color: var(--secondary);
+  opacity: 0.45;
+  transform: translateX(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.quick-link:hover .quick-link-arrow { opacity: 1; transform: translateX(0); }
+
+/* Per-card accent tints */
+.quick-link:nth-child(1) .quick-link-icon { background: #e6f0ff; }   /* Admissions — blue */
+.quick-link:nth-child(2) .quick-link-icon { background: #e7f6ec; }   /* Programs — green */
+.quick-link:nth-child(3) .quick-link-icon { background: #fff3dc; }   /* Calendar — amber */
+.quick-link:nth-child(4) .quick-link-icon { background: #f0eaff; }   /* Library — purple */
+.quick-link:nth-child(5) .quick-link-icon { background: #e0f5f7; }   /* Portal — teal */
 
 /* Programs */
 .programs { padding: 64px 16px; background: #fff; }
@@ -404,9 +477,10 @@ img { max-width: 100%; height: auto; }
   .logo-text { font-size: 17px; }
   .nav { padding: 10px 0; }
 
-  /* Quick links wrap instead of overflowing */
-  .quick-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-  .quick-link { margin-right: 0; font-size: 15px; }
+  /* Quick access grid */
+  .quick-links { padding: 40px 16px 48px; }
+  .quick-links-title { font-size: 24px; }
+  .quick-links-subtitle { margin-bottom: 26px; }
 }
 
 /* ---------- Small phones & narrow tablets (below 768px) ----------
