@@ -2,7 +2,12 @@
 
 This site stores every form submission (admissions applications + contact messages) in
 Supabase. The client views them on **`admin.html`**. Everything is already wired up —
-you only need to complete the 4 steps below.
+including your **Project URL and anon key** (already pasted into `js/supabase-config.js`
+and verified against your project).
+
+> ✅ **Done already:** Step 2 below (project URL + anon key) is complete. The only things
+> left are **running the schema** (Step 1), **creating your staff account** (Step 3), and
+> testing.
 
 ---
 
@@ -25,22 +30,14 @@ so that **anyone can submit** but **only you (staff) can read** the submissions.
 
 ---
 
-## Step 2 — Paste your project URL and anon key
+## Step 2 — Paste your project URL and anon key ✅ *(done)*
 
-1. In the Supabase dashboard go to **Project Settings → API**.
-2. Copy the **Project URL** (e.g. `https://abcdefgh.supabase.co`).
-3. Copy the **anon/public key** (the long `eyJ...` string).
-4. Open `js/supabase-config.js` in this project and paste them in:
+Already completed: `js/supabase-config.js` now contains your real project URL
+(`https://ucndljpgfxtaioofwcps.supabase.co`) and your anon key. Both were verified live
+against your Supabase project — the key is accepted.
 
-```js
-window.SUPABASE_CONFIG = {
-  url: "https://YOUR-PROJECT.supabase.co",
-  anonKey: "eyJ..."
-};
-```
-
-> ⚠️ Use the **anon** (public) key here — never the `service_role` key. The anon key is
-> safe to include in the frontend because row-level security protects the data.
+> ⚠️ Only ever the **anon** (public) key belongs here — never the `service_role` key.
+> The anon key is safe in the frontend because row-level security protects the data.
 
 ---
 

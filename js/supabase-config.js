@@ -13,6 +13,5 @@
 window.SUPABASE_CONFIG = {
   // Project: ucndljpgfxtaioofwcps
   url: "https://ucndljpgfxtaioofwcps.supabase.co",
-  // TODO: paste your anon/public key from Supabase → Project Settings → API
-  anonKey: ""
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjbmRsanBnZnh0YWlvb2Z3Y3BzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUzODcxMzYsImV4cCI6MjEwMDk2MzEzNn0.A5BnlYQcFGj4Kgw2MQJPkEaZtvSIhyPe4isQ8wqIRB4"
 };
