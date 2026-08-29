@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginSection = document.getElementById("loginSection");
   const dashSection = document.getElementById("dashboardSection");
   const loginForm = document.getElementById("adminLoginForm");
-  const signupForm = document.getElementById("adminSignupForm");
-  const showSignup = document.getElementById("showSignup");
   const adminMsg = document.getElementById("adminMsg");
   const dashMsg = document.getElementById("dashMsg");
   const userChip = document.getElementById("userChip");
@@ -76,28 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
       applyWelcome(s);
       hide(loginSection); show(dashSection);
       loadAll();
-    } else {
-      setMsg(adminMsg, res.message);
-    }
-  });
-
-  // --- Sign up (if enabled) ---
-  showSignup.addEventListener("click", (e) => {
-    e.preventDefault();
-    signupForm.classList.toggle("hidden");
-  });
-
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("signupName").value.trim();
-    const email = document.getElementById("signupEmail").value.trim();
-    const password = document.getElementById("signupPassword").value;
-    setMsg(adminMsg, "Creating account…", "#666");
-    const res = await api.signUp(email, password, { full_name: name });
-    if (res.ok) {
-      setMsg(adminMsg, "Account created! If email confirmation is enabled in Supabase, check your inbox and confirm first, then sign in above.", "#1e7e34");
-      signupForm.reset();
-      signupForm.classList.add("hidden");
     } else {
       setMsg(adminMsg, res.message);
     }
