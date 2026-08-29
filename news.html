@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_self">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News &amp; Updates – Horizon Education Institute</title>
+  <meta name="description" content="Stay up to date with the latest news, events, and announcements from Horizon Education Institute.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .news-hero { background: linear-gradient(to right, #1a365d, #2a4a7d); color: #fff; padding: 80px 16px; }
+    .news-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+    .news-card {
+      background: #fff; border-radius: 14px; overflow: hidden;
+      border: 1px solid #e8ecf3; box-shadow: 0 4px 14px rgba(0,33,71,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .news-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(0,33,71,0.14); }
+    .news-card-img { width: 100%; height: 200px; object-fit: cover; }
+    .news-card-body { padding: 20px; }
+    .news-card-date { font-size: 12px; color: #889; font-weight: 600; margin-bottom: 6px; }
+    .news-card-title { font-size: 18px; font-weight: 800; color: #1a365d; margin: 0 0 8px; }
+    .news-card-summary { font-size: 14px; color: #556; line-height: 1.6; margin: 0; }
+    .news-card-link { display: inline-block; margin-top: 12px; color: #2a4a7d; font-weight: 700; font-size: 14px; text-decoration: none; }
+    .news-card-link:hover { color: #FFD700; }
+    .news-empty { text-align: center; padding: 60px 16px; color: #889; }
+    .news-empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .news-loading { text-align: center; padding: 60px 16px; color: #666; }
+    .news-detail-modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.6); align-items: center; justify-content: center; padding: 24px;
+    }
+    .news-detail-modal.open { display: flex; }
+    .news-detail-card {
+      background: #fff; border-radius: 18px; max-width: 700px; width: 100%;
+      max-height: 85vh; overflow-y: auto; padding: 32px; position: relative;
+    }
+    .news-detail-close {
+      position: absolute; top: 16px; right: 16px; border: none; background: #eef2f8;
+      border-radius: 50%; width: 36px; height: 36px; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; color: #334;
+    }
+    .news-detail-close:hover { background: #dde3ed; }
+    .news-detail-title { font-size: 26px; font-weight: 800; color: #1a365d; margin: 0 0 8px; padding-right: 40px; }
+    .news-detail-date { font-size: 13px; color: #889; margin-bottom: 16px; }
+    .news-detail-img { width: 100%; border-radius: 12px; margin-bottom: 20px; }
+    .news-detail-body { font-size: 16px; color: #444; line-height: 1.8; white-space: pre-wrap; }
+  </style>
+</head>
+<body class="body-light">
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="news.html" class="nav-link active">News</a>
+          <a href="jobs.html" class="nav-link">Jobs</a>
+        </div>
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="news-hero">
+    <div class="container text-center">
+      <span class="hero-eyebrow">Stay Informed</span>
+      <h1 class="hero-title">News &amp; Updates</h1>
+      <p class="hero-subtitle">The latest announcements, achievements, and events from Horizon Education Institute</p>
+    </div>
+  </section>
+
+  <!-- Featured News -->
+  <section class="section-light">
+    <div class="container" style="max-width:900px;">
+      <div class="news-card" style="display:block;">
+        <img class="news-card-img" src="images/Horizon Team.jpeg" alt="Horizon Education Institute Team" style="height:400px;">
+        <div class="news-card-body" style="padding:28px;">
+          <div class="news-card-date">August 2026</div>
+          <h2 class="news-card-title" style="font-size:24px;">Horizon Education Institute Team Ready for August 2026 Intake</h2>
+          <p class="news-card-summary" style="font-size:16px; line-height:1.8;">
+            The Horizon Education Institute team is fully prepared and excited to welcome new and returning students for the August 2026 intake. Our dedicated staff and faculty are committed to providing quality education and a supportive learning environment for all students joining us this semester.
+          </p>
+          <p class="news-card-summary" style="font-size:16px; line-height:1.8; margin-top:12px;">
+            With new programs, modern facilities, and a vibrant campus community, Horizon continues to be a leading centre for practical, community-tailored higher education in Soroti and beyond. Applications are still open — <a href="apply-now.html" style="color:#2a4a7d; font-weight:700;">apply now</a> to secure your place.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More News from Supabase -->
+  <section class="section-white">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:24px;">More News &amp; Updates</h2>
+      <div id="newsLoading" class="news-loading">Loading more news...</div>
+      <div id="newsGrid" class="news-grid" style="display:none;"></div>
+      <div id="newsEmpty" class="news-empty" style="display:none;">
+        <div class="news-empty-icon">📰</div>
+        <h3 style="color:#1a365d; margin-bottom:8px;">No news yet</h3>
+        <p>Check back soon for the latest updates from Horizon Education Institute.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Detail Modal -->
+  <div class="news-detail-modal" id="newsModal">
+    <div class="news-detail-card">
+      <button class="news-detail-close" id="newsModalClose">✕</button>
+      <h2 class="news-detail-title" id="modalTitle"></h2>
+      <p class="news-detail-date" id="modalDate"></p>
+      <img class="news-detail-img" id="modalImg" style="display:none;">
+      <div class="news-detail-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+        <div class="socials">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Twitter</a>
+          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="#" class="social-btn">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+          <li><a href="campus-life.html" class="footer-link">Campus Life</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Programs</h3>
+        <ul class="footer-list">
+          <li><a href="undergraduate.html" class="footer-link">Undergraduate</a></li>
+          <li><a href="graduate.html" class="footer-link">Graduate</a></li>
+          <li><a href="professional-courses.html" class="footer-link">Professional Courses</a></li>
+          <li><a href="online-learning.html" class="footer-link">Online Learning</a></li>
+          <li><a href="research.html" class="footer-link">Research Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a> | <a href="admin.html" class="footer-link">Staff Login</a></p>
+    </div>
+  </footer>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js?v=2"></script>
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const api = window.HorizonSupabase;
+      const loading = document.getElementById('newsLoading');
+      const grid = document.getElementById('newsGrid');
+      const empty = document.getElementById('newsEmpty');
+      const modal = document.getElementById('newsModal');
+      const modalClose = document.getElementById('newsModalClose');
+
+      function formatDate(d) {
+        try { return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); }
+        catch (e) { return d; }
+      }
+
+      const res = await api.loadPublicNews();
+      loading.style.display = 'none';
+
+      if (res.ok && res.rows.length > 0) {
+        grid.style.display = '';
+        res.rows.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'news-card';
+          card.innerHTML =
+            (item.image_url ? '<img class="news-card-img" src="' + item.image_url + '" alt="' + (item.title || '') + '">' : '') +
+            '<div class="news-card-body">' +
+              '<div class="news-card-date">' + formatDate(item.created_at) + '</div>' +
+              '<h3 class="news-card-title">' + (item.title || '') + '</h3>' +
+              '<p class="news-card-summary">' + (item.summary || '') + '</p>' +
+              (item.body ? '<a class="news-card-link" href="#">Read More →</a>' : '') +
+            '</div>';
+          if (item.body) {
+            card.querySelector('.news-card-link').addEventListener('click', (e) => {
+              e.preventDefault();
+              document.getElementById('modalTitle').textContent = item.title || '';
+              document.getElementById('modalDate').textContent = formatDate(item.created_at);
+              var imgEl = document.getElementById('modalImg');
+              if (item.image_url) { imgEl.src = item.image_url; imgEl.style.display = ''; }
+              else { imgEl.style.display = 'none'; }
+              document.getElementById('modalBody').textContent = item.body;
+              modal.classList.add('open');
+            });
+          }
+          grid.appendChild(card);
+        });
+      } else {
+        empty.style.display = '';
+      }
+
+      modalClose.addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+    });
+  </script>
+</body>
+</html>

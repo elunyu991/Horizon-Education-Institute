@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_self">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Opportunities – Horizon Education Institute</title>
+  <meta name="description" content="Explore career opportunities at Horizon Education Institute. View current job openings and apply today.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .jobs-hero { background: linear-gradient(to right, #1a365d, #2a4a7d); color: #fff; padding: 80px 16px; }
+    .jobs-list { display: grid; gap: 20px; }
+    .job-card {
+      background: #fff; border-radius: 14px; padding: 28px;
+      border: 1px solid #e8ecf3; box-shadow: 0 4px 14px rgba(0,33,71,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .job-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,33,71,0.12); }
+    .job-card-top { display: flex; align-items: start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+    .job-card-title { font-size: 20px; font-weight: 800; color: #1a365d; margin: 0; }
+    .job-card-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .job-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+    }
+    .job-badge-type { background: #eef4ff; color: #2a4a7d; }
+    .job-badge-dept { background: #e6f7ec; color: #1e7e34; }
+    .job-badge-location { background: #fff7d6; color: #8a6d00; }
+    .job-badge-deadline { background: #fdecec; color: #c62828; }
+    .job-card-desc { font-size: 15px; color: #444; line-height: 1.7; margin: 0 0 12px; }
+    .job-card-reqs { font-size: 14px; color: #556; line-height: 1.6; }
+    .job-card-reqs strong { color: #1a365d; }
+    .jobs-empty { text-align: center; padding: 60px 16px; color: #889; }
+    .jobs-empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .jobs-loading { text-align: center; padding: 60px 16px; color: #666; }
+  </style>
+</head>
+<body class="body-light">
+
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img src="images/logo.jpg" alt="Business Logo" class="logo-img">
+          <span class="logo-text">Horizon Education <br> Institute</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Academics</a>
+          <a href="admissions.html" class="nav-link">Admissions</a>
+          <a href="campus-life.html" class="nav-link">Campus Life</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="news.html" class="nav-link">News</a>
+          <a href="jobs.html" class="nav-link active">Jobs</a>
+        </div>
+        <div class="nav-actions">
+          <a href="apply-now.html" class="apply-btn">Apply Now</a>
+          <button class="menu-btn" aria-label="Menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="jobs-hero">
+    <div class="container text-center">
+      <span class="hero-eyebrow">Join Our Team</span>
+      <h1 class="hero-title">Job Opportunities</h1>
+      <p class="hero-subtitle">We're always looking for talented individuals to join the Horizon Education Institute family</p>
+    </div>
+  </section>
+
+  <!-- Jobs Content -->
+  <section class="section-white">
+    <div class="container" style="max-width: 900px;">
+      <div id="jobsLoading" class="jobs-loading">Loading opportunities...</div>
+      <div id="jobsList" class="jobs-list" style="display:none;"></div>
+      <div id="jobsEmpty" class="jobs-empty" style="display:none;">
+        <div class="jobs-empty-icon">💼</div>
+        <h3 style="color:#1a365d; margin-bottom:8px;">No open positions right now</h3>
+        <p>We don't have any current openings, but we're always growing. Check back soon or send your CV to <strong>horizon.solot@gmail.com</strong> for future consideration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-icon">HEI</div>
+          <div>
+            <div class="logo-text-main">Horizon Education</div>
+            <div class="logo-text-sub">INSTITUTE</div>
+          </div>
+        </div>
+        <p class="footer-desc">Excellence in education since 1999. Shaping future leaders through innovative learning.</p>
+        <div class="socials">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Twitter</a>
+          <a href="#" class="social-btn">LinkedIn</a>
+          <a href="#" class="social-btn">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="programs.html" class="footer-link">Academics</a></li>
+          <li><a href="admissions.html" class="footer-link">Admissions</a></li>
+          <li><a href="campus-life.html" class="footer-link">Campus Life</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Programs</h3>
+        <ul class="footer-list">
+          <li><a href="undergraduate.html" class="footer-link">Undergraduate</a></li>
+          <li><a href="graduate.html" class="footer-link">Graduate</a></li>
+          <li><a href="professional-courses.html" class="footer-link">Professional Courses</a></li>
+          <li><a href="online-learning.html" class="footer-link">Online Learning</a></li>
+          <li><a href="research.html" class="footer-link">Research Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Info</h3>
+        <ul class="footer-list">
+          <li class="footer-contact"><span class="footer-icon">📍</span> Plot 16-22, Eyoku Road, Senior Quaters, Soroti City West</li>
+          <li class="footer-contact"><span class="footer-icon">📞</span> + (256) 774-390-641</li>
+          <li class="footer-contact"><span class="footer-icon">✉</span> horizon.solot@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Horizon Education Institute. All rights reserved. | <a href="privacy-policy.html" class="footer-link">Privacy Policy</a> | <a href="terms.html" class="footer-link">Terms of Service</a> | <a href="admin.html" class="footer-link">Staff Login</a></p>
+    </div>
+  </footer>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js?v=2"></script>
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const api = window.HorizonSupabase;
+      const loading = document.getElementById('jobsLoading');
+      const list = document.getElementById('jobsList');
+      const empty = document.getElementById('jobsEmpty');
+
+      function formatDate(d) {
+        try { return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); }
+        catch (e) { return d; }
+      }
+
+      const res = await api.loadPublicJobs();
+      loading.style.display = 'none';
+
+      if (res.ok && res.rows.length > 0) {
+        list.style.display = '';
+        res.rows.forEach(job => {
+          const card = document.createElement('div');
+          card.className = 'job-card';
+          card.innerHTML =
+            '<div class="job-card-top"><h3 class="job-card-title">' + (job.title || '') + '</h3></div>' +
+            '<div class="job-card-meta">' +
+              (job.type ? '<span class="job-badge job-badge-type">' + job.type + '</span>' : '') +
+              (job.department ? '<span class="job-badge job-badge-dept">' + job.department + '</span>' : '') +
+              (job.location ? '<span class="job-badge job-badge-location">📍 ' + job.location + '</span>' : '') +
+              (job.deadline ? '<span class="job-badge job-badge-deadline">Deadline: ' + job.deadline + '</span>' : '') +
+            '</div>' +
+            (job.description ? '<p class="job-card-desc">' + job.description.replace(/\n/g, '<br>') + '</p>' : '') +
+            (job.requirements ? '<div class="job-card-reqs"><strong>Requirements:</strong><br>' + job.requirements.replace(/\n/g, '<br>') + '</div>' : '');
+          list.appendChild(card);
+        });
+      } else {
+        empty.style.display = '';
+      }
+    });
+  </script>
+</body>
+</html>

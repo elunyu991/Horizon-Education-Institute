@@ -132,5 +132,82 @@
     }
   }
 
-  window.HorizonSupabase = { isConfigured, submit, signIn, signUp, loadRows, saveProfile, loadOwnProfile };
+  // Fetch published news articles (public, no auth needed).
+  async function loadPublicNews() {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured yet." };
+    try {
+      const res = await fetch(
+        cfg.url + "/rest/v1/news?select=*&published=eq.true&order=created_at.desc",
+        { method: "GET", headers: { apikey: cfg.anonKey, Authorization: "Bearer " + cfg.anonKey } }
+      );
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true, rows: await res.json() };
+    } catch (e) {
+      return { ok: false, message: "Network error while loading news." };
+    }
+  }
+
+  // Fetch published job adverts (public, no auth needed).
+  async function loadPublicJobs() {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured yet." };
+    try {
+      const res = await fetch(
+        cfg.url + "/rest/v1/job_adverts?select=*&published=eq.true&order=created_at.desc",
+        { method: "GET", headers: { apikey: cfg.anonKey, Authorization: "Bearer " + cfg.anonKey } }
+      );
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true, rows: await res.json() };
+    } catch (e) {
+      return { ok: false, message: "Network error while loading jobs." };
+    }
+  }
+
+  // Insert a row into any table (used by admin for news/jobs).
+  async function insertRow(table, payload, token) {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured yet." };
+    try {
+      const res = await fetch(cfg.url + "/rest/v1/" + table, {
+        method: "POST",
+        headers: { ...baseHeaders(token), Prefer: "return=representation" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true, row: (await res.json())[0] };
+    } catch (e) {
+      return { ok: false, message: "Network error while inserting." };
+    }
+  }
+
+  // Update a row by id.
+  async function updateRow(table, id, payload, token) {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured yet." };
+    try {
+      const res = await fetch(cfg.url + "/rest/v1/" + table + "?id=eq." + id, {
+        method: "PATCH",
+        headers: { ...baseHeaders(token), Prefer: "return=minimal" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, message: "Network error while updating." };
+    }
+  }
+
+  // Delete a row by id.
+  async function deleteRow(table, id, token) {
+    if (!isConfigured()) return { ok: false, message: "Supabase is not configured yet." };
+    try {
+      const res = await fetch(cfg.url + "/rest/v1/" + table + "?id=eq." + id, {
+        method: "DELETE",
+        headers: baseHeaders(token)
+      });
+      if (!res.ok) return { ok: false, message: await parseError(res) };
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, message: "Network error while deleting." };
+    }
+  }
+
+  window.HorizonSupabase = { isConfigured, submit, signIn, signUp, loadRows, saveProfile, loadOwnProfile, loadPublicNews, loadPublicJobs, insertRow, updateRow, deleteRow };
 })();

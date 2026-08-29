@@ -39,6 +39,8 @@
           <a href="admissions.html" class="nav-link">Admissions</a>
           <a href="campus-life.html" class="nav-link">Campus Life</a>
           <a href="contact.html" class="nav-link">Contact</a>
+          <a href="news.html" class="nav-link">News</a>
+          <a href="jobs.html" class="nav-link">Jobs</a>
         </div>
         <div class="nav-actions">
           <a href="apply-now.html" class="apply-btn">Apply Now</a>
@@ -99,6 +101,8 @@
         <button class="tab-btn active" data-tab="applications">📝 Applications</button>
         <button class="tab-btn" data-tab="contact_messages">✉ Contact Messages</button>
         <button class="tab-btn" data-tab="students">🎓 Students</button>
+        <button class="tab-btn" data-tab="news">📰 News</button>
+        <button class="tab-btn" data-tab="jobs">💼 Jobs</button>
       </div>
 
       <div class="admin-card" id="tab-applications">
@@ -130,6 +134,124 @@
           <table class="fee-table" id="studentsTable">
             <thead><tr id="studHead"></tr></thead>
             <tbody id="studBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- News Tab -->
+      <div class="admin-card hidden" id="tab-news">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <h2 class="section-title-left" style="margin:0;">📰 News &amp; Updates</h2>
+          <button id="addNewsBtn" class="btn btn-primary" style="font-size:14px;">+ Add News</button>
+        </div>
+        <p class="row-count" id="newsCount"></p>
+
+        <!-- News Form (hidden by default) -->
+        <div id="newsFormWrap" class="hidden" style="background:#f7fafc; border-radius:12px; padding:20px; margin-bottom:20px; border:1px solid #e8ecf3;">
+          <h3 style="font-size:16px; font-weight:700; color:#1a365d; margin:0 0 14px;" id="newsFormTitle">New Article</h3>
+          <form id="newsForm" class="form">
+            <input type="hidden" id="newsEditId">
+            <div class="form-group">
+              <label for="newsTitle">Title</label>
+              <input type="text" id="newsTitle" required placeholder="e.g. New ICT Lab Opened">
+            </div>
+            <div class="form-group">
+              <label for="newsSummary">Summary (short description)</label>
+              <input type="text" id="newsSummary" placeholder="Brief summary for the news card">
+            </div>
+            <div class="form-group">
+              <label for="newsBody">Full Article</label>
+              <textarea id="newsBody" rows="5" placeholder="Write the full article here..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="newsImage">Image URL (optional)</label>
+              <input type="url" id="newsImage" placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+              <input type="checkbox" id="newsPublished" checked>
+              <label for="newsPublished" style="margin:0;">Publish immediately</label>
+            </div>
+            <div class="form-actions" style="display:flex; gap:10px; justify-content:flex-end;">
+              <button type="button" id="newsCancelBtn" class="logout-btn" style="font-size:14px;">Cancel</button>
+              <button type="submit" class="btn btn-primary" style="font-size:14px;">Save Article</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-wrap">
+          <table class="fee-table" id="newsTable">
+            <thead><tr><th>TITLE</th><th>DATE</th><th>STATUS</th><th>ACTIONS</th></tr></thead>
+            <tbody id="newsBody2"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Jobs Tab -->
+      <div class="admin-card hidden" id="tab-jobs">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <h2 class="section-title-left" style="margin:0;">💼 Job Adverts</h2>
+          <button id="addJobBtn" class="btn btn-primary" style="font-size:14px;">+ Add Job</button>
+        </div>
+        <p class="row-count" id="jobsCount"></p>
+
+        <!-- Job Form (hidden by default) -->
+        <div id="jobFormWrap" class="hidden" style="background:#f7fafc; border-radius:12px; padding:20px; margin-bottom:20px; border:1px solid #e8ecf3;">
+          <h3 style="font-size:16px; font-weight:700; color:#1a365d; margin:0 0 14px;" id="jobFormTitle">New Job Advert</h3>
+          <form id="jobForm" class="form">
+            <input type="hidden" id="jobEditId">
+            <div class="form-group">
+              <label for="jobTitle">Job Title</label>
+              <input type="text" id="jobTitle" required placeholder="e.g. Lecturer in Computer Science">
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label for="jobDept">Department</label>
+                <input type="text" id="jobDept" placeholder="e.g. School of Computing">
+              </div>
+              <div class="form-group">
+                <label for="jobLocation">Location</label>
+                <input type="text" id="jobLocation" placeholder="e.g. Soroti City">
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label for="jobType">Employment Type</label>
+                <select id="jobType">
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                  <option>Contract</option>
+                  <option>Internship</option>
+                  <option>Temporary</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="jobDeadline">Application Deadline</label>
+                <input type="date" id="jobDeadline">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="jobDesc">Job Description</label>
+              <textarea id="jobDesc" rows="4" placeholder="Describe the role and responsibilities..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="jobReqs">Requirements</label>
+              <textarea id="jobReqs" rows="4" placeholder="List qualifications and requirements..."></textarea>
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+              <input type="checkbox" id="jobPublished" checked>
+              <label for="jobPublished" style="margin:0;">Publish immediately</label>
+            </div>
+            <div class="form-actions" style="display:flex; gap:10px; justify-content:flex-end;">
+              <button type="button" id="jobCancelBtn" class="logout-btn" style="font-size:14px;">Cancel</button>
+              <button type="submit" class="btn btn-primary" style="font-size:14px;">Save Job</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-wrap">
+          <table class="fee-table" id="jobsTable">
+            <thead><tr><th>TITLE</th><th>DEPT</th><th>TYPE</th><th>DEADLINE</th><th>STATUS</th><th>ACTIONS</th></tr></thead>
+            <tbody id="jobsBody2"></tbody>
           </table>
         </div>
       </div>
